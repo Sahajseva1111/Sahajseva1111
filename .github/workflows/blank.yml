@@ -1,0 +1,50 @@
+);
+
+CREATE TABLE EmployeeSkills (
+  EmployeeID INT,
+  SkillID INT,
+  PRIMARY KEY (EmployeeID, SkillID),
+  FOREIGN KEY (EmployeeID) REFERENCES Employees(EmployeeID)
+);
+
+CREATE TABLE Skills (
+  SkillID INT PRIMARY KEY,
+  SkillName VARCHAR(50)
+);
+
+CREATE TABLE Projects (
+  ProjectID INT PRIMARY KEY,
+  ProjectName VARCHAR(255),
+  StartDate DATE,
+  EndDate DATE,
+  Budget DECIMAL(10,2)
+);
+
+CREATE TABLE ProjectEmployees (
+  ProjectID INT,
+  EmployeeID INT,
+  PRIMARY KEY (ProjectID, EmployeeID),
+  FOREIGN KEY (ProjectID) REFERENCES Projects(ProjectID),
+  FOREIGN KEY (EmployeeID) REFERENCES Employees(EmployeeID)
+);
+
+CREATE TABLE ProjectTasks (
+  TaskID INT PRIMARY KEY,
+  ProjectID INT,
+  TaskName VARCHAR(255),
+  StartDate DATE,
+  EndDate DATE,
+  TaskStatus VARCHAR(50),
+  FOREIGN KEY (ProjectID) REFERENCES Projects(ProjectID)
+);
+
+CREATE TABLE TaskAssignments (
+  TaskID INT,
+  EmployeeID INT,
+  PRIMARY KEY (TaskID, EmployeeID),
+  FOREIGN KEY (TaskID) REFERENCES ProjectTasks(TaskID),
+  FOREIGN KEY (EmployeeID) REFERENCES Employees(EmployeeID)
+);
+
+This schema includes tables for clients, campaigns, advertisements, social media platforms, ad performance, employees, roles, employee skills, skills, projects, project employees, project tasks, and task assignments. It captures key information about clients, campaigns, advertisements, and employee roles and skills, as well as the performance of advertisements on different platforms.
+More on t
